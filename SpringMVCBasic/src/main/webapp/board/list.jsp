@@ -84,7 +84,7 @@ input[type=button]:hover {
          <td><%=num--%></td>
          <td><a href = "/board/content?notice_id=<%=notice.getNotice_id() %>"><%=notice.getTitle() %></a></td>
          <td><%=notice.getWriter()%></td>
-         <td><%=notice.getRegdate()%></td>
+         <td><%=notice.getRegdate().substring(0,16)%></td>
          <td><%=notice.getHit()%></td>
       </tr>
       <%} %>
@@ -97,7 +97,7 @@ input[type=button]:hover {
          </td>
       </tr>
       <tr>
-         <td colspan="5"><input type="button" onclick="location.href='/board/regist.jsp';"></td>
+         <td colspan="5"><input type="button" value="글 작성" onclick="location.href='/board/regist.jsp';"></td>
       </tr>
    </table>
 

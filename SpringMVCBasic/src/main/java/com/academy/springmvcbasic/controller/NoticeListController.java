@@ -14,15 +14,18 @@ import com.academy.springmvcbasic.model.repository.NoticeDAO;
 public class NoticeListController  implements Controller{
 	
 	private NoticeDAO noticeDAO;
+	
 
 	
+	
+	// 
 	public void setNoticeDAO(NoticeDAO noticeDAO) {
 		this.noticeDAO = noticeDAO;
 	}
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("ㅇㄴㅇㄴㅇ");
+		
 		List boardList = noticeDAO.selectAll();
 		
 		// 4단계로 저장
