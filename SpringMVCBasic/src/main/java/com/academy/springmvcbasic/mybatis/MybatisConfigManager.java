@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  * SqlSessionFactory를 생성해야 한다
  * 공식 홈페이지에 의하면 SqlSessionFactory는 메모리에 싱글톤으로 관리하자*/
 public class MybatisConfigManager {
-
+//
 	private static MybatisConfigManager instance;
 	SqlSessionFactory sqlSessionFactory;
 	InputStream inputStream;

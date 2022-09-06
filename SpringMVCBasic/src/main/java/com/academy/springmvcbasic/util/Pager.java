@@ -16,7 +16,7 @@ public class Pager {
 	private int lastPage;
 	private int curPos;	// 페이지 당 시작 인덱스 (list의  0, 10, 20)
 	private int num;	// 페이지 당 시작 번호 26 16 6
-	
+	//
 	
 	public void init(List list, HttpServletRequest request) {
 		totalRecord = list.size();

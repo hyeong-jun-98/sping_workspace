@@ -10,7 +10,7 @@ import com.academy.springmvcbasic.mybatis.MybatisConfigManager;
 public class NoticeDAO {
 
 	MybatisConfigManager configManager = MybatisConfigManager.getInstance(); // sqlSession을 주고 쿼리문을 수행시켜주기 때문
-
+//
 	public int insert(Notice notice) {
 		int result = 0;
 		SqlSession sqlSession = configManager.getSqlSession();
