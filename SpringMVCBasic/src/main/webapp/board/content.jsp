@@ -77,7 +77,7 @@ function edit() {
 }
 
 function del() {
-	if(confirm("삭제하시겠습니까?")) {
+	if(confirm("삭제할래?")) {
 		location.href="/board/delete?notice_id=<%=notice.getNotice_id()%>";
 	}
 }
