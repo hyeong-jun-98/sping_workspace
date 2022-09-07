@@ -4,7 +4,7 @@
 <%@page import="com.academy.springmvcsimple.util.Pager"%>
 
 <%@page import="java.util.List"%>
-<%@page import="com.academy.springmvcsimple.model.repository.NoticeDAO"%>
+<%@page import="com.academy.springmvcsimple.model.notice.NoticeDAO"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%!  
 		Pager pager = new Pager();
@@ -15,7 +15,7 @@
 	out.print("게시물 수 : " + boardList.size());
 	pager.init(boardList, request);	// 공식이 자동으로 계산된다.
 
-	application.setAttribute("id", "batman");
+	application.setAttribute("id", "");
 	out.print(application.getAttribute("id"));
 	
 	

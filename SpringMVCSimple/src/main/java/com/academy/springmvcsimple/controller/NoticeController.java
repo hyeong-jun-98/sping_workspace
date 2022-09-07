@@ -1,14 +1,17 @@
 package com.academy.springmvcsimple.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.academy.springmvcsimple.model.repository.NoticeDAO;
+import com.academy.springmvcsimple.domain.Notice;
+import com.academy.springmvcsimple.model.notice.NoticeDAO;
 
 // 이전과는 달리 하나의 게시판에 사용되는 컨트롤러를 매 기능마다 1:1 대응하게 클래스를 만들지말고
 // 게시판 하나 당 하나의 컨트롤러를 만들자.
@@ -21,7 +24,7 @@ public class NoticeController {
 	private NoticeDAO noticeDAO;
 	
 	// 목록 요청 메서드 : 어떠한 요청에 대해 이 메서드가 작동할 지 매핑을 표현한다
-	@RequestMapping(value="/board/list")
+	@RequestMapping(value="/board/list", method = RequestMethod.GET)  // 글을 가져가는 거니까 GET 방식
 	public String selectAll(Model model) {
 		System.out.println("noticeDAO 주소값 : " + noticeDAO);
 		List boardList = noticeDAO.selectAll();//3 단계
@@ -30,14 +33,51 @@ public class NoticeController {
 		
 		return "board/list";
 	}
+
+	// 글 내용보기 요청 메서드
+	@RequestMapping (value="/board/content" , method=RequestMethod.GET)
+	public ModelAndView select(int notice_id) {
+		System.out.println("notice_id : " + notice_id);
+		
+		// 3단계 일 시킨다.
+		Notice notice = noticeDAO.select(notice_id);
+		
+		// 4단계 결과 저장
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("notice", notice);
+		mav.setViewName("board/content");
+		
+		return mav;
+	}
 	
 	
-	
-	
-	
-	// 글쓰기 요청 메서드
-	// 글 내용보가 요청 메서드
-	// 수정 요청 메서드
 	// 삭제 요청 메서드
+	@RequestMapping (value="/board/delete", method=RequestMethod.GET)
+	public String delete(int notice_id) {
+		
+		noticeDAO.delete(notice_id);
+		
+		return "redirect:/board/list";
+	}
+	
+	// 글 쓰기 요청 요청 메서드
+	@RequestMapping (value="/board/regist", method = RequestMethod.POST)
+	public String insert(Notice notice) {
+		
+		noticeDAO.insert(notice);
+
+		return "redirect:/board/list";
+	}
+	
+	// 수정 요청 메서드
+	@RequestMapping (value="/board/edit" , method = RequestMethod.POST)
+	public ModelAndView update(Notice notice) {
+		
+		noticeDAO.update(notice);
+		
+		return new ModelAndView("redirect:/board/content?notice_id=" + notice.getNotice_id());	
+				
+	
+	}
 
 }
