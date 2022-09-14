@@ -1,0 +1,52 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+	<!-- DB 연동관련 -->
+	<!-- DATA 소스 결정 dataSource resource-ref : java:comp/env를 사용하여 검색 어떠한 DB를 
+		쓸 지 스프링에게 알려주었음. -->
+	<jee:jndi-lookup id="dataSource"	jndi-name="jdbc/myoracle" resource-ref="true" />
+
+	<!-- 개발자대신 트랜잭션을 처리해주는 빈을 등록한다. 빈의 이름은 기술 종류에 따라 여러 유형으로 나뉜다.
+			JPA : JPATransactionManager 	(sun사의 ORM기술)
+			Hibernate: HibernateTransactionManager		(사설 ORM 기술)
+			jdbc : DataSourceTransactionManager
+			mybatis: DataSourceTransactionManager (mybatis는 내부적으로 jdbc를 쓰기때문.... )
+			
+	 -->	
+	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	 	<property name="dataSource" ref="dataSource"/>
+	 </bean>
+
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- Mybatis가 지원하는 쿼리객체 -> 쓰는이유 : 스프링으로부터 트랜잭션 등을 지원받기 위해...-->
+	<!-- SqlSessionTemplate을 추출하려면 SqlSessionFactoryBean으로부터 가져올 수 있다. -->
+	<bean id="factoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:com/academy/springdb/mybatis/config.xml"/>
+		
+	</bean>
+
+	<!-- DAO에 주입할 SqlSessionTemplate 등록 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="factoryBean"/>
+	</bean>
+
+	<!-- 모든 서블릿에서 접근할 공통 빈을 등록한다. -->
+	<context:component-scan base-package="com.academy.springdb.model"/>
+
+</beans>
