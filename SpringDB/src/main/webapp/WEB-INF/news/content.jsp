@@ -63,7 +63,17 @@ input[type=button]:hover {
 	width:10%;
 }
 
+#inputArea input[name='detail'] {
+	width:65%;
+}
 
+#inputArea input[name='author'] {
+	width:15%;
+}
+
+#inputArea input[type='button'] {
+	width:15%;
+}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -99,8 +109,12 @@ function del() {
     <input type="button" value="수정" onClick = "edit()">
     <input type="button" value="삭제" onClick = "del()">
   </form>
-
 	
+	<div id="inputArea">
+		<input type="text" name="detail">
+		<input type="text" name="author">
+		<input type="button" value="댓글동록">
+
 	</div>  
   
   

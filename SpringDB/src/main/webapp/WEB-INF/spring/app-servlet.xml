@@ -13,7 +13,8 @@
 		http://www.springframework.org/schema/jee https://www.springframework.org/schema/jee/spring-jee-4.3.xsd		
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 		
-		
+		<!-- jsp와 같은 동ㅈ거자원이 아닌 html, css, js 등의 정적자원은 매핑없이 접근할 수 있ㄷ록 설정한다. -->
+		<resources location="/resources/" mapping="/resources/**"/>
 
 	<!-- 뷰 리절버 등록 -->
 	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
