@@ -15,6 +15,9 @@ import com.academy.springdb.model.news.NewsService;
 
 @Controller // 스프링 컨테이너가 메모리에 올릴 대상이 될 수 있도록,,, 데이터만 보내준다.
 public class NewsController {
+	public NewsController() {
+		System.out.println("저는 그냥 컨트롤러고 지금 스프링에 의헤 태어남");
+	}
 
 	@Autowired // 자동으로 받는다.
 	private NewsService newsService; // 컨트롤러
@@ -23,7 +26,7 @@ public class NewsController {
 	public ModelAndView selectAll() {
 
 		List newsList = newsService.selectAll();
-		ModelAndView mav = new  ModelAndView("/news/list");
+		ModelAndView mav = new ModelAndView("/news/list");
 		mav.addObject("newsList", newsList);
 		return mav;
 	}
@@ -38,11 +41,31 @@ public class NewsController {
 
 	// 글쓰기 요청 처리
 	@PostMapping("/news/regist")
-	public ModelAndView regist(News news) {
+	public String regist(News news) {
 		newsService.regist(news);
 
-		return null;
+		return "redirect:/news/list";
 	}
+	
+	// 수정요청 처리
+	@PostMapping("/news/update")
+	public ModelAndView update(News news) {
+		newsService.update(news);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/news/content?news_id="+ news.getNews_id());		// 상세보기로 재접속
+		
+		return mav;
+	}
+	
+	// 삭제 처리
+	@GetMapping("/news/delete")
+	public String delete(int news_id) {
+		newsService.delete(news_id);
+		
+		return "redirect:/news/list";
+	}
+	
+	
 
 	// 스프링 MVC의 컨트롤러의 메서드들 중에서 예외가 발생할 때 이 예외를 처리할 때 메서드를 지원해준다
 	@ExceptionHandler(NewsException.class)
@@ -53,7 +76,7 @@ public class NewsController {
 		mav.addObject("msg", e.getMessage());
 		return mav;
 	}
-	
+
 	@GetMapping("/news/content")
 	public ModelAndView select(int news_id) {
 		News news = newsService.select(news_id);
@@ -61,5 +84,9 @@ public class NewsController {
 		mav.addObject("news", news);
 		return mav;
 	}
+	
+	
+	
+	
 
 }

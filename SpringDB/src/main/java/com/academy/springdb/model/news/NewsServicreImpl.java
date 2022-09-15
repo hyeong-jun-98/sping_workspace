@@ -11,9 +11,10 @@ import com.academy.springdb.model.domain.News;
 
 @Service
 public class NewsServicreImpl implements NewsService {
-		@Autowired
-		@Qualifier("mybatisNewsDAO")
-		private NewsDAO newsDAO;
+		
+	@Autowired
+	@Qualifier("mybatisNewsDAO")
+	private NewsDAO newsDAO;
 	
 		
 		
@@ -37,10 +38,12 @@ public class NewsServicreImpl implements NewsService {
 
 	@Override
 	public void update(News news) {
+		newsDAO.update(news);
 	}
 
 	@Override
 	public void delete(int news_id) {
+		newsDAO.delete(news_id);
 	}
 	
 }
