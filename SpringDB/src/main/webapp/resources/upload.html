@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+	function upload() {
+		var form = document.querySelector("form");
+		form.action="/upload";
+		form.method="post";
+		form.encoding="multipart/form-data";		// 순수 js 바이너리 파일도 전송이 가능해짐
+		form.submit();
+	}
+
+</script>
+<body>
+	<form enctype="multipart/form-data">
+		<div>
+				제목:<input type="text" name="title"><br>
+				작성자:<input type="text" name="writer"><br>
+				파일:<input type="file" name="photo"><br>
+				
+				<input type="button" value="파일 업로드" onClick="upload()">
+		
+		</div>
+	</form>
+</body>
+</html>
