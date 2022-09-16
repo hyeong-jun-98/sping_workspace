@@ -77,7 +77,7 @@ input[type=button]:hover {
          </td>
       </tr>
       <tr>
-         <td colspan="5"><input type="button" value="글 작성" onclick="location.href='/board/regist.jsp';"></td>
+         <td colspan="5"><input type="button" value="글 작성" onclick="location.href='/news/regist.jsp';"></td>
       </tr>
    </table>
 

@@ -21,6 +21,8 @@ public class NewsController {
 
 	@Autowired // 자동으로 받는다.
 	private NewsService newsService; // 컨트롤러
+	
+	
 
 	@GetMapping("/news/list")
 	public ModelAndView selectAll() {
@@ -60,8 +62,9 @@ public class NewsController {
 	// 삭제 처리
 	@GetMapping("/news/delete")
 	public String delete(int news_id) {
+		// Transaction : 세부업무가 모두 성공해야 성공으로 간주하는 업무 단위
 		newsService.delete(news_id);
-		
+	
 		return "redirect:/news/list";
 	}
 	
