@@ -60,6 +60,12 @@ function registAsync() {
 	})
 }
 
+$(function() {
+	$($("input[type='button']")[0]).click(function() {
+		// 로그인 폼 요청
+		$(location).attr("href", "/admin/loginform");
+	})
+})
 
 
 $(function() {

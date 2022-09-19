@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SubCategory">
+	
+	<resultMap type="" id="subcategoryMap">
+		<id column="subcategory_id" property="subcategory_id"/>
+		<result column="category_name" property="category_name"/>
+		<association  column="topcategory_id" property="topcategory" select="TopCategory.select" javaType="TopCategory"></association>
+	</resultMap>
+	
+
+
+
+	<!-- 관리자 등록 -->
+	<insert id="insert" parameterType="SubCategory">
+		insert into subcategory (subcategory_id, category_name, topcategory_id) values (seq_subcategory.nextval, #{category_name}, #{topcategory.topcategory_id})
+	</insert>
+
+	<!-- 관리자 로그인 체크 (아이디/ 패스워드로 가져오기) -->
+	<select id="selectAll" resultMap="subcategoryMap">
+		select subcategory_id, category_name, topcategory_id from subcategory 
+	</select>
+
+
+<select id="selectByTopCategoryId" resultMap="subcategoryMap" parameterType="int">
+		select subcategory_id, category_name, topcategory_id from subcategory where topcategory_id=#{topcategory_id} 
+	</select>
+
+</mapper>
