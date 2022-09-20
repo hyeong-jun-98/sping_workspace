@@ -20,17 +20,17 @@
   <!-- summernote -->
   <link rel="stylesheet" href="/static/admin/plugins/summernote/summernote-bs4.min.css">
    <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <link rel="stylesheet" href="/static/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
 
 <!-- Select2 -->
-  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="/static/admin/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/static/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
    <!-- Bootstrap4 Duallistbox -->
-  <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <link rel="stylesheet" href="/static/admin/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
   
    <!-- BS Stepper -->
-  <link rel="stylesheet" href="../../plugins/bs-stepper/css/bs-stepper.min.css">
+  <link rel="stylesheet" href="/static/admin/plugins/bs-stepper/css/bs-stepper.min.css">
   <!-- dropzonejs -->
-  <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
+  <link rel="stylesheet" href="/static/admin/plugins/dropzone/min/dropzone.min.css">
   
   

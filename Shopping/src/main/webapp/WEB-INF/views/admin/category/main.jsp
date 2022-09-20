@@ -202,13 +202,8 @@
                   		<button class="btn btn-primary col-md-1" onClick="registTop()">등록</button>
                   </div>
                   <select class="form-control select" style="width: 100%;" size="20">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                    <option selected="selected"></option>
+                    
                   </select>
                 </div>
                 	<button class="btn btn-primary">등록</button>
@@ -219,16 +214,11 @@
                   <label>하위 카테고리</label>
                   <div class="row" style="margin:1px">
                   		<input type="text" class="form-control col-md-11"  name="category_name">
-                  		<button class="btn btn-info col-md-1" onClick="registSb()">등록</button>
+                  		<button class="btn btn-info col-md-1" onClick="registSub()">등록</button>
                   </div>
                   <select class="form-control select" style="width: 100%;" size="20">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                    <option selected="selected"></option>
+                   
                   </select>
                 </div>  
   					 
@@ -320,7 +310,6 @@ function printTopList(jsonList) {
 	for(var i=0; i < jsonList.length; i++) {
 		var topcategory = jsonList[i];
 		tag+="<option value=\""+topcategory.topcategory_id+" \">"+topcategory.category_name+"</option>";
-	
 	}
 	$(sel).append(tag);
 }
@@ -331,13 +320,14 @@ function registTop(){
 		url:"/rest/admin/topcategory",
 		type:"post",
 		data:{
-			category_name:$("input[name='category_name']").val()
+			category_name:$($("input[name='category_name'][0]")).val()
+			
 		},
 		success:function(result, status, xhr) {
 			getTopList();
 		},
 		
-		success:function(xhr, status, error) {
+		error:function(xhr, status, error) {
 			alert(status +", " + error);
 		}
 		
@@ -352,18 +342,22 @@ function registSub() {
 		return;
 	} 
 	
+	
 	//  하위 카테고리 비동기 요청
 		$.ajax({
 		url:"/rest/admin/subcategory",
 		type:"post",
 		data:{
-			
+			"category_name" : $($("input[name='category_name']")[1]).val(),
+			"topcategory.topcategory_id" : $($("select")[0]).val()
 		},
 		success:function(result, status, xhr) {
-			getTopList();
+			console.log(result);
+			getSubList($($("select")[0]).val());
+			
 		},
 		
-		success:function(xhr, status, error) {
+		error:function(xhr, status, error) {
 			alert(status +", " + error);
 		}
 		
@@ -371,13 +365,45 @@ function registSub() {
 	})
 	
 }
+// 선택한 상위 카테고리에 소속된 하위 목록 가져오기
+function getSubList(topcategory_id) {
+	alert(topcategory_id);
+	$.ajax({
+		url:"/rest/admin/subcategory/" + topcategory_id,
+		type:"get",
+		
+		success:function(result, status, xhr){
+			printSubList(result);
+		},
+	
+		error:function(xhr, status, error) {
+			
+		}
+	
+	})
+}
+
+function printSubList(jsonList) {
+	var sel = $($("select")[1]);
+	$(sel).empty();
+	
+	tag = "";
+	for(var i = 0; i < jsonList.length; i++) {
+		var obj = jsonList[i];
+		tag+="<option value=\""+obj.subcategory_id+" \">"+obj.category_name+"</option>";
+	}
+	$(sel).append(tag);
+	
+	
+}
 
 
 $(function() {
-	getTopList();
+	getTopList();	// 상위 카테고리의 목록 가져오기
 	
 	$($("select")[0]).change(function () {
 		// alert("당신이 선택한 아이템의 value값은" + $(this).val());
+		getSubList($(this).val());
 	});
 })
 
