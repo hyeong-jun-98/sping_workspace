@@ -2,19 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="TopCategory">
 
+	<!-- 컬렉션을 위한 1대다 관계 부모 한 건이 딸려있는 자식들을 같이 가져오기 -->
+	<resultMap type="TopCategory" id="topCategoryMap">
+		<id column="topcategory_id" property="topcategory_id"/>
+		<result column="category_name" property="category_name"/>
+		<collection property="subList" column="topcategory_id"  javaType="java.util.List" ofType="SubCategory" select="SubCategory.selectByTopCategoryId"></collection>
+	</resultMap>
+
+
 
 	<!-- 카테고리 등록 -->
-	<insert id="insert" parameterType="TopCategory">
+	<insert id="insert" parameterType="TopCategory" >
 		insert into topcategory (topcategory_id, category_name) values (seq_topcategory.nextval, #{category_name})
 	</insert>
 
 	<!-- 관리자 로그인 체크 (아이디/ 패스워드로 가져오기) -->
-	<select id="selectAll" resultType="TopCategory">
+	<select id="selectAll" resultMap="topCategoryMap" >
 		select * from topcategory
 	</select>
 	
 	
-	<select id="select" parameterType="int" resultType="TopCategory">
+	<select id="select" parameterType="int" resultType="TopCategory" >
 		select * from topcategory where topcategory_id=#{topcategory_id}
 	</select>
 

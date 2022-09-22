@@ -10,32 +10,37 @@ import com.academy.shopping.exception.ProductException;
 import com.academy.shopping.model.domain.Product;
 
 @Repository
-public class MybatisProductDAO  implements ProductDAO{
+public class MybatisProductDAO implements ProductDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
-	
+
 	@Override
 	public List selectAll() {
-		
+
 		return sqlSessionTemplate.selectList("Product.selectAll");
 	}
 
 	@Override
-	public Product select(int product_id) {
+	public List selectBySubId(int subcategory_id) {
 		
-		return null;
+		return sqlSessionTemplate.selectList("Product.selectBySubId",subcategory_id);
 	}
 
 	@Override
-	public void insert(Product product)  throws ProductException{
-		
+	public Product select(int product_id) {
+
+		return sqlSessionTemplate.selectOne("Product.select", product_id);
+	}
+
+	@Override
+	public void insert(Product product) throws ProductException {
+
 		int result = sqlSessionTemplate.insert("Product.insert", product);
-		if(result == 0) {
+		if (result == 0) {
 			throw new ProductException("상품 등록 실패");
 		}
-		
+
 	}
 
 	@Override

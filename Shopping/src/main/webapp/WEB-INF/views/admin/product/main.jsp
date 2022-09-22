@@ -86,7 +86,7 @@
                   <%for(int i = 0; i < productList.size(); i++) { %>
                   <% Product product = productList.get(i); %>
                     <tr>
-                      <td><a href = "/product/detail?product_id=<%=product.getProduct_id() %>"><%=i %></a></td>
+                      <td><a href = "/product/detail?product_id=<%=product.getProduct_id() %>"><%=product.getProduct_id()%></a></td>
                       <td><%=product.getSubcategory().getCategory_name() %></td>
                       <td><img src = "/static/data/<%=product.getProduct_img() %>" width="45px"/></td>
                       <td><%=product.getProduct_name() %></td>
@@ -96,11 +96,18 @@
                       <td><%= product.getProduct_img()%></td>
                     
                     </tr>
-                     <%} %>
+                     <% } %>
                   </tbody>
                 </table>
                 
                 <button class="btn btn-primary" onClick="location.href='/admin/product/registform';">상품등록</button>
+                <button class="btn btn-primary" onClick="showExcel()">엑셀등록</button>
+                <div style="display: none" id="excel-area">
+                <form id="excel-form">
+                <input type="file" name="excel">
+                <button type="button" class="btn btn-info" onClick="registExcel()">등록</button>
+              </form>
+              </div>
               </div>
               <!-- /.card-body -->
             </div>
@@ -158,6 +165,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="/static/admin/dist/js/demo.js"></script>
 <!-- Page specific script -->
+<script type="text/javascript" src = "/static/common/js/lib.js"></script>
+
 <script>
 function getTopList() {
 	$.ajax({
@@ -264,6 +273,32 @@ function printSubList(jsonList) {
 	
 	
 }
+///////
+function showExcel() {
+	$("#excel-area").css({display : "block"});
+}
+
+
+// 엑셀파일을 이용한 상품 일괄 등록
+function registExcel(){
+	if($("input[name='excel']").val()=="") {
+		alert("선택한 파일이 없음");
+		return;
+		
+	}
+	
+	
+		if(confirm("엑셀로 등록?")) {
+			$("#excel-form").attr({
+				"action":"/admin/product/excel",
+				"method":"post",
+				"enctype":"multipart/form-data"
+			})
+			
+			$("#excel-form").submit();
+			
+		}
+}
 
 
 $(function() {
@@ -273,6 +308,17 @@ $(function() {
 		// alert("당신이 선택한 아이템의 value값은" + $(this).val());
 		getSubList($(this).val());
 	});
+	
+	// 파일 선택 컴포넌트에 이벤트 연결
+	
+	$("input[name='excel']").change(function() {
+		// 선택한 파일 구하기
+		var ext =  getExt($(this).val());
+		if(ext !="xls" && ext!="xlsx") {
+			alert("퇴근 1시간 반 전.");
+		} 
+	})
+	
 })
 
 

@@ -14,6 +14,11 @@
 		<association column="subcategory_id" property="subcategory" javaType="SubCategory" select="SubCategory.select"/>
 	</resultMap>
 
+	<!-- 선택한 ㅏㅇ위 카테고리에 소속된 사움 가져오기 -->
+	<select id="selectByTopId" resultMap="ProductMap" parameterType="int">
+		select * from product where subcategory_id in (select subcategory_id from topcategory where topcategory_id=#{topcategory_id})
+	</select>
+
 
 	<!-- 관리자 등록 -->
 	<insert id="insert" parameterType="Product">
@@ -21,9 +26,20 @@
 		values (seq_product.nextval,#{product_name}, #{brand}, #{price},#{discount}, #{memo}, #{detail}, #{product_img}, #{subcategory.subcategory_id})
 	</insert>
 
-
+	<!-- 조건 없이 모두 가져오기 -->
 	<select id="selectAll" resultMap="ProductMap">
-		select * from product
+		select * from product order by product_id desc
 	</select>
+	
+	<!-- 선택된 하위 카테고리에 소속된 상품 가져오기 -->
+	<select id="selectBySubId" parameterType="int" resultMap="ProductMap">
+		select * from product where subcategory_id = #{subcategory_id}
+	</select>
+	
+	<select id="select" parameterType="int" resultMap="ProductMap">
+		select * from product where product_id=#{product_id}
+	</select>
+	
+	
 	
 </mapper>

@@ -33,3 +33,19 @@ start with 1;
 create sequence seq_product
 increment by 1
 start with 1;
+
+
+
+CREATE TABLE MEMBER (
+	member_id number PRIMARY KEY,
+	customer_id varchar(30),
+	customer_name varchar(30),
+ 	customer_pass varchar(30),
+ 	customer_email varchar(50)
+);
+
+
+CREATE SEQUENCE seq_member INCREMENT BY 1 START WITH 1;
+
+
+

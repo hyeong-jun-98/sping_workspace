@@ -1,5 +1,8 @@
 package com.academy.shopping.restcontroller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +40,7 @@ public class AdminRestController {
 
 	// 로그인 요청을 처리
 	@PostMapping("/admin/login")
-	public ResponseEntity<String> login(Admin admin) {
+	public ResponseEntity<String> login(HttpServletRequest request, Admin admin) {
 		// db에 있는 패스워드를 비교하기 전에 먼저 클라이언트가 전송한 password를 hash값으로 변환한 후 비교한다.
 
 		String hashValue = hashManager.getConvertedPassword(admin.getPass()); // 평문인 비밀번호를 hash로 변경
@@ -45,16 +48,20 @@ public class AdminRestController {
 		Admin obj = adminService.selectByIdAndPass(admin); // 해당 아이디와 패스워드가 일치하는 회원이 있을 때 DTO가 null이 아니다.
 
 		System.out.println("로그인 결과 : " + obj);
-		
-		ResponseEntity <String> entity = new ResponseEntity<String>("1", HttpStatus.OK );		
-		
+
+		// 세션에 정보를 담아두자
+		HttpSession session = request.getSession();
+		session.setAttribute("admin", obj);
+
+		ResponseEntity<String> entity = new ResponseEntity<String>("1", HttpStatus.OK);
+
 		return entity;
 	}
 
 	@ExceptionHandler(AdminException.class)
-	public ResponseEntity <String> handleException(AdminException e) {
+	public ResponseEntity<String> handleException(AdminException e) {
 
-		ResponseEntity <String> entity = new ResponseEntity<String>("0", HttpStatus.OK );		
+		ResponseEntity<String> entity = new ResponseEntity<String>("0", HttpStatus.OK);
 
 		return entity;
 	}

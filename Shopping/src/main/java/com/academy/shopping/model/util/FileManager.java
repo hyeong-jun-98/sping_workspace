@@ -58,4 +58,30 @@ public class FileManager {
 
 		System.out.println(time + "." + ext);
 	}
+	
+	// 엑셀 파일 업로드
+	public File saveExcel(String path, MultipartFile excel) {
+		
+		File file =null;
+		// 서버에 올라온 엑셀을 읽어보자
+		try {
+
+			excel.transferTo(file = new File(path+"/" + excel.getOriginalFilename()));
+			System.out.println(file.getAbsolutePath());
+			
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return file;
+		
+	}
+	
+	
+	
+	
 }
