@@ -6,10 +6,12 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
-		http://www.springframework.org/schema/p http://www.springframework.org/schema/jee/spring-p-4.3.xsd
+		http://www.springframework.org/schema/p http://www.springframework.org/schema/p/spring-p-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
@@ -34,5 +36,37 @@
 		<property name="maxUploadSize" value="1048576"/>
 	</bean>
 	
+	<!-- 공통 로직 등록 -->
+	<!-- <bean id="topCategoryAspect" class="com.academy.shopping.model.aop.TopCategoryAspect" /> -->
+	<bean id="adminLoginAspect" class="com.academy.shopping.model.aop.AdminLoginAspect" />
+	<bean id="globalExceptionAspect" class="com.academy.shopping.model.aop.GlobalExceptionAspect" />
+	<bean id="memberLoginAspect" class="com.academy.shopping.model.aop.MemberLoginAspect" />
+
+	<!-- 계획: 쇼핑몰 내의 모든 컨트롤러의 메서드 호출 시 우리가 정의한 aspect를 동작시킨다. -->
 	
+	<!-- <aop:config>
+		<aop:aspect ref="topCategoryAspect">
+			어디 지점에서??
+			<aop:pointcut expression="execution(public * com.academy.shopping.controller.shop..*(..))" id="topCategoryPointcut"/>
+			 어느 시점에?? 호출전 후에  around 
+			<aop:around method="getCategoryList" pointcut-ref="topCategoryPointcut"/>
+		</aop:aspect>
+	</aop:config> 
+ -->
+	<aop:config>
+		<aop:aspect ref="adminLoginAspect">
+			<aop:pointcut expression="execution(public * com.academy.shopping.controller.admin..*(..))" id="adminLoginPointcut"/>
+			<aop:around method="loginCheck" pointcut-ref="adminLoginPointcut"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+	<aop:config>
+		<aop:aspect ref="memberLoginAspect">
+			<aop:pointcut expression="execution(public * com.academy.shopping.controller.shop..*(..))" id="memberLoginPointcut"/>
+			<aop:around method="loginCheck" pointcut-ref="memberLoginPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+
 </beans>

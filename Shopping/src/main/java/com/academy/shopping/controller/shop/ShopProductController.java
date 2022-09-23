@@ -1,6 +1,8 @@
-package com.academy.shopping.controller;
+package com.academy.shopping.controller.shop;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +24,7 @@ public class ShopProductController {
 	// 상품목록 요청
 	@GetMapping("/shop/product")
 	public ModelAndView getProductMain(@RequestParam(defaultValue = "0") int topcategory_id,
-			@RequestParam(defaultValue = "0") int subcategory_id) {
+			@RequestParam(defaultValue = "0") int subcategory_id, HttpServletRequest request) {
 
 		// 카테고리 가져오기
 		List topCategoryList = topCategoryService.selectAll();
@@ -49,7 +51,7 @@ public class ShopProductController {
 	}
 	
 	@GetMapping("/shop/product/view")
-	public ModelAndView getDetail(int product_id) {
+	public ModelAndView getDetail(int product_id, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("shop/detail");
 		List topCategoryList = topCategoryService.selectAll();
 		Product product = productService.select(product_id);

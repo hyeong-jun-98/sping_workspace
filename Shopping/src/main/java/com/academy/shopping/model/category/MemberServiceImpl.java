@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.academy.shopping.exception.MemberException;
 import com.academy.shopping.model.domain.Member;
+import com.academy.shopping.model.util.HashManager;
 
 @Service
 public class MemberServiceImpl  implements MemberService{
 
 	@Autowired
 	private MemberDAO memberDAO;
+	
+	@Autowired
+	private HashManager hashManager;
 	
 	
 	@Override
@@ -27,6 +31,14 @@ public class MemberServiceImpl  implements MemberService{
 		
 		return memberDAO.selectCustomerId(customer_id);
 	}
+	
+
+	@Override
+	public Member selectByIdAndPass(Member member) throws MemberException {
+		String result = hashManager.getConvertedPassword(member.getCustomer_pass());
+		member.setCustomer_pass(result); // 암호화된 결과를 다시 넣는다
+		return memberDAO.selectByIdAndPass( member);
+	}
 
 	@Override
 	public Member select(int member_id) {
@@ -36,7 +48,8 @@ public class MemberServiceImpl  implements MemberService{
 
 	@Override
 	public void insert(Member member)  throws MemberException{
-		
+		String result = hashManager.getConvertedPassword(member.getCustomer_pass());
+		member.setCustomer_pass(result); // 암호화된 결과를 다시 넣는다
 		memberDAO.insert(member);
 	}
 
@@ -47,6 +60,8 @@ public class MemberServiceImpl  implements MemberService{
 	@Override
 	public void delete(Member Member) {
 	}
+
+
 
 
 }

@@ -12,6 +12,7 @@ public interface MemberDAO {
 	
 	public List selectAll();
 	public Member selectCustomerId(String customer_id);
+	public Member selectByIdAndPass(Member member);
 	public Member select(int member_id);
 	public void insert(Member member);
 	public void update(Member member);

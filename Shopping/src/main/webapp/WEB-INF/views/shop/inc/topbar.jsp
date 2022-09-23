@@ -19,7 +19,7 @@
             <li><a href="#"><span class="icon_heart_alt"></span>
                 <div class="tip">2</div>
             </a></li>
-            <li><a href="#"><span class="icon_bag_alt"></span>
+            <li><a href="/shop/cart/list"><span class="icon_bag_alt"></span>
                 <div class="tip">2</div>
             </a></li>
         </ul>
@@ -28,8 +28,12 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
+        	<%if(session.getAttribute("member")==null) { 	// 로그인 안 한 경우%>
             <a href="/shop/member/loginform">Login</a>
             <a href="/shop/member/registform">Register</a>
+            <%} else {  		// 로그인 한 경우%>
+            <a href="/shop/member/logout">Logout</a>
+            <%} %>
         </div>
     </div>
     <!-- Offcanvas Menu End -->
@@ -71,15 +75,19 @@
                 <div class="col-lg-3">
                     <div class="header__right">
                         <div class="header__right__auth">
-                           <a href="/shop/member/loginform">Login</a>
-            				<a href="/shop/member/registform">Register</a>
+                           <%if(session.getAttribute("member")==null) { 	// 로그인 안 한 경우%>
+					            <a href="/shop/member/loginform">Login</a>
+					            <a href="/shop/member/registform">Register</a>
+					            <%} else {  		// 로그인 한 경우%>
+					            <a href="javascript:logout()">Logout</a>
+					            <%} %>
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
                             <li><a href="#"><span class="icon_heart_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span>
+                            <li><a href="/shop/cart/list"><span class="icon_bag_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>
                         </ul>
@@ -92,3 +100,11 @@
         </div>
     </header>
     <!-- Header Section End -->
+    
+    <script>
+    function logout() {
+    	if(confirm("로그아웃 하시겠습니까?")) {
+    		location.href="/shop/member/logout";
+    	}
+    }
+    </script>

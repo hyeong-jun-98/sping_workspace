@@ -94,7 +94,7 @@
                                     <input type="text" value="1">
                                 </div>
                             </div>
-                            <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
+                            <a href="javascript:addCart()" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
                             <ul>
                                 <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                                 <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
@@ -317,8 +317,34 @@
 <%@include file="./inc/plugin.jsp" %>
 
 
+<script type="text/javascript">
 
+function addCart(){
+	// 장바구니에 비동기로 상품 요청 등록
+	$.ajax({
+		url:"/rest/cart",
+		type:"post",
+		data:{
+			product_id:<%=product.getProduct_id()%>,
+			product_name:"<%=product.getProduct_name()%>",
+			brand:"<%=product.getBrand()%>",
+			price:<%=product.getPrice()%>,
+			discount:<%=product.getDiscount()%>,
+			product_img:"<%=product.getProduct_img()%>",
+			subcategory_id:<%=product.getSubcategory().getSubcategory_id()%>
+		},
+		success:function(result, status, xhr){
+			
+		}
+	})
+
+
+}
+
+</script>
 
 </body>
 
+
 </html>
+
