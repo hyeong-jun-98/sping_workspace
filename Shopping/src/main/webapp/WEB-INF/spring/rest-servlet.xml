@@ -6,12 +6,14 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
 		http://www.springframework.org/schema/p http://www.springframework.org/schema/jee/spring-p-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 
 	
@@ -26,6 +28,20 @@
 			<value>application/json;charset=utf-8</value>
 		</property>
 	</bean>
+	
+	
+	
+	<bean id="restmemberLoginAspect" class="com.academy.shopping.model.aop.RestMemberLoginAspect" />
+	<bean id="restGlobalExceptionAspect" class="com.academy.shopping.model.aop.RestGlobalExceptionAspect" />
+	
+	
+		
+	<aop:config>
+		<aop:aspect ref="restmemberLoginAspect">
+			<aop:pointcut expression="execution(public * com.academy.shopping.restcontroller.shop..*(..))" id="memberLoginPointcut"/>
+			<aop:around method="loginCheck" pointcut-ref="memberLoginPointcut"/>
+		</aop:aspect>
+	</aop:config>
 	
 	
 	

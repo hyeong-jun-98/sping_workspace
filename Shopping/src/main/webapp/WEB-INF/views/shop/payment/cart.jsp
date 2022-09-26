@@ -1,9 +1,13 @@
+<%@page import="com.academy.shopping.model.domain.Cart"%>
 <%@page import="com.academy.shopping.model.util.CurrencyFormatter"%>
 <%@page import="java.util.Currency"%>
 <%@page import="com.academy.shopping.model.domain.Product"%>
 <%@page import="com.academy.shopping.model.domain.SubCategory"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%
+	List <Cart>cartList = (List) request.getAttribute("cartList");
+%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -54,100 +58,40 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="img/shop-cart/cp-1.jpg" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Chain bucket bag</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 150.0</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">$ 300.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="img/shop-cart/cp-2.jpg" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Zip-pockets pebbled tote briefcase</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 170.0</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">$ 170.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="img/shop-cart/cp-3.jpg" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Black jean</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 85.0</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">$ 170.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="cart__product__item">
-                                        <img src="img/shop-cart/cp-4.jpg" alt="">
-                                        <div class="cart__product__item__title">
-                                            <h6>Cotton Shirt</h6>
-                                            <div class="rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 55.0</td>
-                                    <td class="cart__quantity">
-                                        <div class="pro-qty">
-                                            <input type="text" value="1">
-                                        </div>
-                                    </td>
-                                    <td class="cart__total">$ 110.0</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                            </tbody>
+                            
+	                            <tbody>
+	                            <form id="cart-form">
+	                            <%int total = 0; %>
+	                            <%for(int i = 0; i < cartList.size(); i++) { %>
+	                            <%Cart cart = cartList.get(i); %>
+	                            <input type="hidden" name="product_id" value="<%=cart.getProduct_id()%>">
+	                                <tr>
+	                                    <td class="cart__product__item">
+	                                        <img src="/static/data/<%=cart.getProduct_img() %>" alt="" width="65px">
+	                                        <div class="cart__product__item__title">
+	                                            <h6><%=cart.getProduct_name() %></h6>
+	                                            <div class="rating">
+	                                                <i class="fa fa-star"></i>
+	                                                <i class="fa fa-star"></i>
+	                                                <i class="fa fa-star"></i>
+	                                                <i class="fa fa-star"></i>
+	                                                <i class="fa fa-star"></i>
+	                                            </div>
+	                                        </div>
+	                                    </td>
+	                                    <td class="cart__price"><%=CurrencyFormatter.getCurrency(cart.getDiscount()) %></td>
+	                                    <td class="cart__quantity">
+	                                        <div class="pro-qty">
+	                                            <input type="text" name="quantity" value="<%=cart.getQuantity()%>">
+	                                        </div>
+	                                    </td>
+	                                    <td class="cart__total"><%=CurrencyFormatter.getCurrency(cart.getDiscount() * cart.getQuantity()) %></td>
+	                                    <td class="cart__close" ><span class="icon_close" onClick="delCart(<%=cart.getProduct_id()%>);"></span></td>
+	                                </tr>
+	                                <%total += cart.getDiscount() * cart.getQuantity(); %>
+	                                <%} %>
+	                      		 </form>
+	                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -160,7 +104,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn update__btn">
-                        <a href="#"><span class="icon_loading"></span> Update cart</a>
+                        <a href="javascript:updateCart()"><span class="icon_loading"></span> Update cart</a>
                     </div>
                 </div>
             </div>
@@ -177,11 +121,14 @@
                 <div class="col-lg-4 offset-lg-2">
                     <div class="cart__total__procced">
                         <h6>Cart total</h6>
+                       
                         <ul>
-                            <li>Subtotal <span>$ 750.0</span></li>
-                            <li>Total <span>$ 750.0</span></li>
+                            <li>구매금액 <span><%=CurrencyFormatter.getCurrency(total) %></span></li>
+                            <li>최종 결제 금액 <span><%=CurrencyFormatter.getCurrency(total) %></span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+                        
+                      
+                        <a href="javascript:goCheckout()" class="primary-btn">Proceed to checkout</a>
                     </div>
                 </div>
             </div>
@@ -190,46 +137,40 @@
     <!-- Shop Cart Section End -->
 
 
-<!-- <%@include file="../inc/insta.jsp" %> -->
+
 <%@include file="../inc/footer.jsp" %>
 <%@include file="../inc/search.jsp" %>
 <%@include file="../inc/plugin.jsp" %>
 <script>
 
+function delCart(product_id) {
+	if(confirm("장바구니를 삭제할까요?")) {
+		location.href="/shop/cart/delete?product_id="+product_id;	
+	}
+}
 
 
-function login() {
-	$.ajax({
-		url:"/rest/member/login",
-		type:"post",
-		data:{
-			customer_id: $("#customer_id").val() ,
-			customer_pass: $("#customer_pass").val()
-			
-		},
-		success:function(result, status, xhr) {
-			
-			if(result.code == 1) {
-				location.href="/shop";
-			}
-			
-		}
-	})
-	
-	
+function updateCart() {
+	if(confirm("장바구니를 수정하시겠어요?")) {
+		$("#cart-form").attr({
+			action:"/shop/cart/update",
+			method:"post"
+		})
+		
+		$("#cart-form").submit();
+		
+	}
+}
+
+function goCheckout() {
+	if(confirm("결제하시겠습니까?")) {
+		location.href="/shop/checkout";
+	}
 }
 
 $(function(){
-   //회원등록 버튼에 이벤트 연결
   
-   //로그인
-   $($("form button")[0]).click(function(){
-      login();
-   })
-   //등록
-   $($("form button")[1]).click(function(){
-      location.href="/shop/member/registform";
-   })
+
 })
 
 </script>
