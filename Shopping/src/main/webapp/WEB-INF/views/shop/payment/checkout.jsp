@@ -1,3 +1,4 @@
+<%@page import="com.academy.shopping.model.domain.Paymethod"%>
 <%@page import="com.academy.shopping.model.domain.Member"%>
 <%@page import="com.academy.shopping.model.domain.Cart"%>
 <%@page import="com.academy.shopping.model.util.CurrencyFormatter"%>
@@ -9,6 +10,7 @@
 <%
 	Member member = (Member) request.getAttribute("member");
 	List <Cart>cartList = (List) request.getAttribute("cartList");
+	List <Paymethod> paymethodList = (List) request.getAttribute("paymethodList");
 %>
 
 <!DOCTYPE html>
@@ -54,6 +56,7 @@
                 </div>
             </div>
             <form id="pay-form" class="checkout__form">
+            	
                 <div class="row">
                     <div class="col-lg-8">
                         <h5>Billing detail</h5>
@@ -103,27 +106,23 @@
                                     </ul>
                                 </div>
                                 <div class="checkout__order__widget">
-                                    <label for="o-acc">
-                                       카드결제
-                                        <input type="checkbox" id="o-acc">
+                                <% for(int i = 0; i < paymethodList.size(); i++) {%>
+                                <%Paymethod paymethod = paymethodList.get(i); %>
+                                    <label for="o-acc<%=i%>">
+                                       <%=paymethod.getPayname() %>
+                                        <input type="radio" id="o-acc<%=i%>" name="paymethod.paymethod_id" value="<%=paymethod.getPaymethod_id()%>">
                                         <span class="checkmark"></span>
                                     </label>
-                                   
-                                    <label for="check-payment">
-                                       온라인 입금
-                                        <input type="checkbox" id="check-payment">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label for="paypal">
-                                        외상
-                                        <input type="checkbox" id="paypal">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                  <%} %>
+                                    
                                 </div>
-                                <button type="button" class="site-btn" onClick="pay()">Place oder</button>
+                                <button type="button" class="site-btn" onClick="pay()">Place order</button>
                             </div>
                         </div>
                     </div>
+                    <!-- ordersummary에 넣어주기 위해 만들어줌 -->
+                    <input type="text" name="totalbuy" value="<%=total %>" />
+            		<input type="text" name="totalpay" value="<%=total %>" />
                 </form>
             </div>
         </section>
@@ -158,9 +157,8 @@ function updateCart() {
 function pay() {
 	if(confirm("결제하시겠습니까?")) {
 		$("#pay-form").attr({
-			
-			action:"",
-			method:""
+			action:"/shop/pay",
+			method:"post"
 		})	
 	
 		

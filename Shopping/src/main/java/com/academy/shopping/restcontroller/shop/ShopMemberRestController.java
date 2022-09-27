@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.academy.shopping.exception.MemberException;
@@ -24,7 +25,7 @@ public class ShopMemberRestController {
 	private MemberService memberService;
 
 	@PostMapping("/member")
-	public ResponseEntity regist(Member member) {
+	public ResponseEntity regist(HttpServletRequest request, Member member) {
 		System.out.println(member.getCustomer_id());
 		System.out.println(member.getCustomer_name());
 		System.out.println(member.getCustomer_pass());
@@ -39,8 +40,8 @@ public class ShopMemberRestController {
 		return entity;
 	}
 
-	@GetMapping("/member/{customer_id}")
-	public ResponseEntity<Message> getId(@PathVariable("customer_id") String customer_id) {
+	@GetMapping("/member/check")
+	public ResponseEntity<Message> getId(HttpServletRequest request, @RequestParam("customer_id") String customer_id) {
 		
 		memberService.selectCustomerId(customer_id);
 		Message message = new Message(1, customer_id+" 사용가능");
@@ -65,18 +66,5 @@ public class ShopMemberRestController {
 		return entity;
 	}
 	
-	
-	
-	
-	
-	
 
-	@ExceptionHandler(MemberException.class)
-	public ResponseEntity<Message> handleException(MemberException e) {
-
-		Message message = new Message(0, e.getMessage());
-		ResponseEntity<Message> entity = new ResponseEntity<Message>(message, HttpStatus.OK);
-
-		return entity;
-	}
 }

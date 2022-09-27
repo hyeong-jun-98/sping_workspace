@@ -85,7 +85,7 @@
                             <i class="fa fa-star"></i>
                             <span>( 138 reviews )</span>
                         </div>
-                        <div class="product__details__price"><%=CurrencyFormatter.getCurrency(product.getPrice()) %><span><%=CurrencyFormatter.getCurrency(product.getDiscount()) %></span></div>
+                        <div class="product__details__price"><%=CurrencyFormatter.getCurrency(product.getDiscount()) %><span><%=CurrencyFormatter.getCurrency(product.getPrice()) %></span></div>
                         
                         <div class="product__details__button">
                             <div class="quantity">

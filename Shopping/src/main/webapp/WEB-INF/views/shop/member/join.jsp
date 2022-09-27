@@ -149,7 +149,7 @@ function checkId() {
 	
 	
 	$.ajax({
-		url:"/rest/member/"+$("#customer_id").val(),
+		url:"/rest/member/check?customer_id="+$("#customer_id").val(),
 		type:"get",
 		success:function(result, status, xhr) {
 			console.log(result);
@@ -172,7 +172,7 @@ $(function(){
    })
    //로그인
    $($("form button")[1]).click(function(){
-      login();
+      location.href="/shop/member/loginform";
    })
    //등록
    $($("form button")[2]).click(function(){

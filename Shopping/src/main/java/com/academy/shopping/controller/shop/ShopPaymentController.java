@@ -16,12 +16,24 @@ import org.springframework.web.servlet.ModelAndView;
 import com.academy.shopping.model.category.TopCategoryService;
 import com.academy.shopping.model.domain.Cart;
 import com.academy.shopping.model.domain.Member;
+import com.academy.shopping.model.domain.OrderDetail;
+import com.academy.shopping.model.domain.OrderSummary;
+import com.academy.shopping.model.domain.Paymethod;
+import com.academy.shopping.model.order.OrderSummaryService;
+import com.academy.shopping.model.order.PaymethodService;
+import com.academy.shopping.model.util.MailFormReader;
 
 @Controller
 public class ShopPaymentController {
 
 	@Autowired
 	private TopCategoryService topCategoryService;
+	@Autowired
+	private PaymethodService paymethodService;
+	@Autowired
+	private OrderSummaryService orderSummaryService;
+	@Autowired
+	private MailFormReader mailFormReader;
 
 	/* 장바구니 목록 요청 */
 	@GetMapping("/shop/cart/list")
@@ -96,6 +108,8 @@ public class ShopPaymentController {
 		Enumeration<String> en = session.getAttributeNames(); // 순서없는 map의 key값을 추출하여
 		Member member = null;
 		List<Cart> cartList = new ArrayList();
+		List<Paymethod> paymethodList = paymethodService.selectAll();
+
 		while (en.hasMoreElements()) { // key 값 만큼
 			String key = en.nextElement(); // 요소추출
 			Object obj = session.getAttribute(key); // 뭐가 반환되는지 알 수 없음
@@ -107,26 +121,54 @@ public class ShopPaymentController {
 		}
 		mav.addObject("member", member);
 		mav.addObject("cartList", cartList);
-		
+		mav.addObject("paymethodList", paymethodList);
+
 		return mav;
 	}
-	
+
+	// 결제 요청 처리
 	@PostMapping("/shop/pay")
-	public ModelAndView pay (HttpServletRequest request) {
+	public ModelAndView pay(HttpServletRequest request, OrderSummary orderSummary) {
+
 		
-		// 구매자 정보
+		
+		// 결제정보 (ordersummary, orderdetail)
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		orderSummary.setMember(member); // 주문정보 객체에 회원정보 넣기
+		System.out.println("채워진 DTO 상태" + orderSummary);
+
+		// 카트 추출
+		Enumeration<String> keyList = session.getAttributeNames();
+
+		// 구매한 상품목록 누적할 List
+		List orderDetailList = new ArrayList();
+		while (keyList.hasMoreElements()) {
+			String key = keyList.nextElement();
+
+			if (!key.equals("member")) {
+				Cart cart = (Cart) session.getAttribute(key);
+				OrderDetail orderDetail = new OrderDetail();
+				orderDetail.setProduct(cart);
+				orderDetail.setEa(cart.getQuantity());
+//				orderDetail.setOrderSummary_id(0);
+				orderDetailList.add(orderDetail);
+			}
+		}
+
+		orderSummary.setOrderDetailList(orderDetailList);
 		
 		
+		mailFormReader.setPath(request.getServletContext().getRealPath("/resources/email/mailform.html"));
+		System.out.println("컨트롤러에서의 "+mailFormReader.getPath());
+		// orderSummary가 모두 채워졌다면 주문 입력을 처리하자
+		orderSummaryService.order(orderSummary);
+
 		// 배송정보
-		
-		
-		// 결제정보
-		
-		
-		return null;
+
+		ModelAndView mav = new ModelAndView("/shop/payment/result");
+		mav.addObject("orderSummary", orderSummary);
+		return mav;
 	}
-	
-	
-	
 
 }

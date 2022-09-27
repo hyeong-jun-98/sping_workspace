@@ -9,6 +9,9 @@
 <typeAlias type="com.academy.shopping.model.domain.TopCategory" alias="TopCategory"/>
 <typeAlias type="com.academy.shopping.model.domain.SubCategory" alias="SubCategory"/>
 <typeAlias type="com.academy.shopping.model.domain.Member" alias="Member"/>
+<typeAlias type="com.academy.shopping.model.domain.OrderSummary" alias="OrderSummary"/>
+<typeAlias type="com.academy.shopping.model.domain.OrderDetail" alias="OrderDetail"/>
+<typeAlias type="com.academy.shopping.model.domain.Paymethod" alias="Paymethod"/>
 
 </typeAliases>
   <mappers>
@@ -17,5 +20,8 @@
     <mapper resource="com/academy/shopping/mybatis/SubCategoryMapper.xml"/>
     <mapper resource="com/academy/shopping/mybatis/TopCategoryMapper.xml"/>
     <mapper resource="com/academy/shopping/mybatis/MemberMapper.xml"/>
+    <mapper resource="com/academy/shopping/mybatis/OrderSummaryMapper.xml"/>
+    <mapper resource="com/academy/shopping/mybatis/OrderDetailMapper.xml"/>
+    <mapper resource="com/academy/shopping/mybatis/PaymethodMapper.xml"/>
   </mappers>
 </configuration>

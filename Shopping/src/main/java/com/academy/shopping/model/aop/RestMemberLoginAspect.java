@@ -23,7 +23,6 @@ public class RestMemberLoginAspect {
 		Object[] args = joinPoint.getArgs();
 		for (Object arg : args) {
 			System.out.println(TAG + "매개변수" + arg);
-
 			if (arg instanceof HttpServletRequest) {
 				request = (HttpServletRequest) arg;
 			}
@@ -32,23 +31,24 @@ public class RestMemberLoginAspect {
 		// 제외될 명단을 작성하기 위한 uri 조사
 		String uri = request.getRequestURI();
 		ResponseEntity entity = null;
-		if (uri.equals("/rest/member/login")) {
+		if (
+				uri.equals("/rest/member/login") || 
+				uri.equals("/rest/member/check") || 
+				uri.equals("/rest/member")  
+				
+				) {
 			returnObj = joinPoint.proceed();
 			if (returnObj instanceof ResponseEntity) {
 				entity = (ResponseEntity) returnObj;
-				
 			}
 		} else {
 			// 회원 로그인 여부 판단
 			session = request.getSession();
-
 			if (session.getAttribute("member") == null) {
 				throw new MemberException("회원 로그인이 필요한 서비스입니다. (rest)");
 			} else {
 				returnObj = joinPoint.proceed(); // 원래 호출하려면 메서드 호출
-
 				// returnObj 검증
-
 				if (returnObj instanceof ResponseEntity) {
 					entity = (ResponseEntity) returnObj;
 					System.out.println("엔티티 반환" + entity);
