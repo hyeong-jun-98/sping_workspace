@@ -18,7 +18,7 @@ public class AdminController {
 	
 	// 관리자 등록 폼 요청 처리
 	@GetMapping("/admin/registform")
-	public ModelAndView getRegistForm() {
+	public ModelAndView getRegistForm(HttpServletRequest request) {
 		//
 		return new ModelAndView("admin/regist");
 	}

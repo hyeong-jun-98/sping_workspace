@@ -40,6 +40,9 @@
 		select * from product where product_id=#{product_id}
 	</select>
 	
+	<delete id="delete" parameterType="Product">
+		delete from product where product_id =#{product_id}
+	</delete>
 	
 	
 </mapper>

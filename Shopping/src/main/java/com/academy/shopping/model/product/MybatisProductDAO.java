@@ -23,8 +23,8 @@ public class MybatisProductDAO implements ProductDAO {
 
 	@Override
 	public List selectBySubId(int subcategory_id) {
-		
-		return sqlSessionTemplate.selectList("Product.selectBySubId",subcategory_id);
+
+		return sqlSessionTemplate.selectList("Product.selectBySubId", subcategory_id);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class MybatisProductDAO implements ProductDAO {
 		if (result == 0) {
 			throw new ProductException("상품 등록 실패");
 		}
-
+ 
 	}
 
 	@Override
@@ -48,7 +48,11 @@ public class MybatisProductDAO implements ProductDAO {
 	}
 
 	@Override
-	public void delete(Product product) {
+	public void delete(Product product) throws ProductException{
+		int result = sqlSessionTemplate.delete("Product.delete", product);
+		if (result == 0) {
+			throw new ProductException("상품 삭제 실패");
+		}
 	}
 
 }

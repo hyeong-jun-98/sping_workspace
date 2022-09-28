@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.academy.shopping.exception.FileException;
 import com.academy.shopping.exception.UploadException;
 import com.academy.shopping.model.domain.Product;
 
@@ -79,6 +80,18 @@ public class FileManager {
 		
 		return file;
 		
+	}
+	
+	// 파일 삭제
+	public void removeFile(String path) throws FileException {
+		
+		File file = new File(path);
+		boolean result =  file.delete();
+		
+		if(result == false ) {
+			throw new FileException("파일 삭제 실패");
+		}
+	
 	}
 	
 	

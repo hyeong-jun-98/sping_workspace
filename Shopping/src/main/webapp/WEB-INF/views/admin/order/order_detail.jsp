@@ -1,10 +1,12 @@
+<%@page import="com.academy.shopping.model.domain.OrderDetail"%>
+<%@page import="com.academy.shopping.model.domain.OrderSummary"%>
 <%@page import="com.academy.shopping.model.domain.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="com.academy.shopping.model.category.TopCategoryDAO"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%
-	List <Product> productList = (List) request.getAttribute("productList");
 	
+	OrderSummary orderSummary = (OrderSummary) request.getAttribute("orderSummary");
 
 %>
 <!DOCTYPE html>
@@ -49,7 +51,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Responsive Hover Table</h3>
+                <h3 class="card-title">주문 상세정보</h3>
 
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 150px;">
@@ -66,36 +68,45 @@
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
+                	<thead>
+ 						<tr>
+ 							<th>주문번호</th>
+ 							<th>주문일시</th>
+ 							<th>구매자</th>
+ 						</tr>               	
+                	</thead>
+                	<tbody>
+                		<tr>
+                			<th>	<%=orderSummary.getOrdersummary_id() %></th>
+                			<th>	<%=orderSummary.getBuydate() %></th>
+                			<th>	<%=orderSummary.getMember().getCustomer_name() %></th>
+                		</tr>
+                	</tbody>
+                </table>
+                
+                
+                <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      
                       <th>No</th>
-                      <th>카테고리</th>
-                      <th>사진</th>
-                      <th>이름</th>
-                      <th>브랜드</th>
+                      <th>상품 구분</th>
+                      <th>상품 이미지</th>
+                      <th>상품명</th>
                       <th>가격</th>
-                      <th>할인가격</th>
-                      <th>간략 설명</th>
-                     
+                      <th>구매 수량</th>
                     </tr>
                   </thead>
-                  
                   <tbody>
                   
-                  <%for(int i = 0; i < productList.size(); i++) { %>
-                  <% Product product = productList.get(i); %>
+                  <%for(int i = 0; i < orderSummary.getOrderDetailList().size(); i++) { %>
+                  <% OrderDetail orderDetail = orderSummary.getOrderDetailList().get(i); %>
                     <tr>
-                      <td><%=product.getProduct_id()%></td>
-                      <td><%=product.getSubcategory().getCategory_name() %></td>
-                      <td> <a href="/admin/product/view?product_id=<%=product.getProduct_id() %>">
-                      <img src = "/static/data/<%=product.getProduct_img() %>" width="45px"/></a></td>
-                      <td><%=product.getProduct_name() %></td>
-                      <td><%=product.getBrand() %></td>
-                      <td><%=product.getPrice() %></td>
-                      <td><%=product.getDiscount() %></td>
-                      <td><%= product.getProduct_img()%></td>
-                    
+                      <td><%=i %></td>
+                      <td><%=orderDetail.getProduct().getSubcategory().getCategory_name()%></td>
+                      <td><img width="45px" src="/static/data/<%=orderDetail.getProduct().getProduct_img()%>"></td>
+                      <td><%= orderDetail.getProduct().getProduct_name()%></td>
+                      <td><%=orderDetail.getProduct().getDiscount() %></td>
+                      <td><%=orderDetail.getEa() %></td>
                     </tr>
                      <% } %>
                   </tbody>

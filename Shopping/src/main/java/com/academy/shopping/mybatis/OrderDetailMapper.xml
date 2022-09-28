@@ -9,8 +9,8 @@
 	</resultMap>
 
  
- 	<select id="selectByOrderSummaryId" parameterType="int" resultType="OrderDetail">
- 		select * from where ordersummary_id = #{ordersummary_id}
+ 	<select id="selectByOrderSummaryId" parameterType="int" resultMap="orderDetailMap">
+ 		select * from orderdetail where ordersummary_id = #{ordersummary_id}
  	</select>
 
 

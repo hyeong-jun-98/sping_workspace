@@ -17,7 +17,7 @@ public interface ProductService {
 
 	public void update(Product product);
 
-	public void delete(Product product);
+	public void remove(Product product, String dest);		// 파일 + db 삭제
 
 	public void regist(Product product, String path); // DAO + file 서비스는 좀 더 포괄적인 개념
 	public void registByExcel(File file, String ori, String dest); // DAO + file 서비스는 좀 더 포괄적인 개념

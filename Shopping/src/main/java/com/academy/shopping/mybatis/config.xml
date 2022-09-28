@@ -12,8 +12,8 @@
 <typeAlias type="com.academy.shopping.model.domain.OrderSummary" alias="OrderSummary"/>
 <typeAlias type="com.academy.shopping.model.domain.OrderDetail" alias="OrderDetail"/>
 <typeAlias type="com.academy.shopping.model.domain.Paymethod" alias="Paymethod"/>
-
 </typeAliases>
+
   <mappers>
     <mapper resource="com/academy/shopping/mybatis/AdminMapper.xml"/>
     <mapper resource="com/academy/shopping/mybatis/ProductMapper.xml"/>

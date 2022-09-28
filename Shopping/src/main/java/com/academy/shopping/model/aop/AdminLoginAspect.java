@@ -29,7 +29,14 @@ public class AdminLoginAspect {
 		String uri = request.getRequestURI();
 		// 로그인이 필요한 서비스와 그렇지 않은 서비스로 조건을 크게 나눈다.
 		
-		if(uri.equals("/admin/loginform")) {
+		if(
+				uri.equals("/admin/loginform") ||
+				uri.equals("/admin/registform") ||
+				uri.equals("/admin/product/registform") ||
+				uri.equals("/admin/product/regist") 
+				
+				
+				) {
 				returnObj = joinPoint.proceed();
 		}else {
 		if (request != null) {

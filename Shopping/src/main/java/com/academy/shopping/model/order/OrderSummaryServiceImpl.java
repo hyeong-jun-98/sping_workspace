@@ -58,13 +58,13 @@ public class OrderSummaryServiceImpl implements OrderSummaryService {
 	@Override
 	public List selectAll() {
 
-		return null;
+		return orderSummaryDAO.selectAll();
 	}
 
 	@Override
 	public OrderSummary select(int ordersummary_id) {
 
-		return null;
+		return orderSummaryDAO.select(ordersummary_id);
 	}
 
 	@Override

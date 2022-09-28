@@ -37,7 +37,7 @@
 	</select>
 	
 	<select id="select" parameterType="int" resultMap="orderSummaryMap">
-		select * from ordersummary where orderummary_id =#{ordersummary_id}
+		select * from ordersummary where ordersummary_id =#{ordersummary_id}
 	</select>
 	
 	<update id="update" parameterType="OrderSummary">
