@@ -115,7 +115,7 @@
 					<textarea class="form-control" placeholder="상품 상세설명" id="summernote"  name="detail">상세설명 : <%=product.getDetail() %></textarea>               	
 	                <input type="file" class="form-control" placeholder="상품 이미지 선택" name="photo">
 	
-						<button type="button" class="btn btn-info" onClick="editProduct()">상품 수정</button>               
+						<button type="button" class="btn btn-info" onClick="edit()">상품 수정</button>               
 						<button type="button" class="btn btn-info" onClick="deleteProduct()">상품 삭제</button>               
 						<button type="button" class="btn btn-info" onClick="location.href='/admin/product/list'">목록 보기</button>               
 	               </div>
@@ -246,19 +246,39 @@ function registProduct(){
 			"enctype":"multipart/form-data"
 			
 		})
-		$("form").submit();l
+		$("form").submit();
 	}
 }
 
-function editProduct() {
+// 수정요청 - 비동기 + 파일 업로드
+// FormData- json만으로 보낼수없엇던 바이너리 파일까지 보낼 수 있다.
+function edit() {
 	if(confirm("상품을 수정하시겠습니까?")) {
-		$("form").attr({
-			"action":"/admin/product/edit",
-			"method" : "post",
-			"enctype":"multipart/form-data"
-			
+		var formArray = $("form").serializeArray();
+		
+		//console.log(formArray);
+		// json 대신 바이너리 파일을 포함할 수 있는 formData를 이용하자
+		var formData = new FormData(formArray);
+		for(var i = 0; i < formArray.length i++) {
+			formData.append(formArray[i].name,formArray[i].value);
+		}
+		// 특히 input type="file"인 컴포넌트는 텍스트가 아니므로, 실제 선택한 파일을 포함한다
+		formData.append("photo", $("input[name='photo']")[0].files[0]);
+		
+		
+		//ajax 전송
+		$.ajax({
+			url:"/rest/admin/product/update",
+			type:"POST",
+			data:formData,
+			enctype:"multipart/form-data",
+			contentType:false, // 문자열화 시키지 않는다 (바이너리 파일이 포함될 경우 이 속성을 false로,,)
+			processData: false,	// 문자열화 시키지 않는다 (바이너리 파일이 포함될 경우 이 속성을 false로,,)
+			success:function(result, status, xhr) {
+				alert(result);
+			}
 		})
-		$("form").submit();
+		
 	}
 }
 
@@ -268,7 +288,7 @@ function deleteProduct() {
 	// 기존의 폼양식을 전송할 수 있도록 쪼개자 (직렬화 분해)
 	var formArray = $("form").serializeArray();
 	
-	// 서버에 전송 시 json으로 보내기...
+	// 서버에 전송 시 json으로 보내기...  순수 String으로 보낼 때 json으로 보내면된다.
 	var json ={};
 	for(var i=0; i < formArray.length; i++) {
 		json[formArray[i].name] = formArray[i].value;
@@ -307,7 +327,7 @@ $(function(){
       getSubList($(this).val());
    });  
    
-   $($("select")[0]).val(1);
+   
    
 })
 
