@@ -1,0 +1,12 @@
+h1 {
+    color:orange;
+    font-weight: 400;
+
+}
+
+h2 {
+    color:greenyellow;
+    font-style: 1.5em;
+}
+
+@import url('./side.css');
