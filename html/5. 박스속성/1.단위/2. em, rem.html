@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    html {
+        font-style: 10px;  /*rem을 조절하기 위해 html에서 조절하는데 그러면 rem을 조절하기 위해 전체 사이즈가 바뀔 수 있으니
+        
+                            body태그를 만들어 전체 사이즈에 대한 정보는 body안에다가 넣는다.*/
+    }
+    body {  
+        font-style: 14px;
+    }
+
+    div {
+        border: 2px solid gray;
+        box-sizing: border-box;
+    }
+    .root {
+        width: 50em;
+        font-style: 20px;
+    }
+    .percent {
+        width: 20rem;       /*rem html 폰트사이즈 대비 */
+    }
+    .child {
+        width: 50%;  /*em이였으면 자기 자신의 font-size에 영향을 받는다. font-size * em*/
+    }
+
+
+</style>
+<body>
+    <div class="root">Root
+        <div class="percent">parent
+            <div class="child">child1</div>
+            <div class="child">child2</div>
+            
+        </div>
+    </div>
+    
+</body>
+</html>
