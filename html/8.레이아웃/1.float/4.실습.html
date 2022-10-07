@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .container {
+        width: 70%;
+        border: 2px solid red;
+        margin: 50px auto;
+    }
+    /*화면을 유지하려면 길이를 %로 준다.
+        width는 고정길이*/
+    .box {
+        /*안의 마진 개수를 세고 퍼센트로 준 다음 빼고 남은 박스 갯수를 나눈다.
+        예를들어 2퍼에 박스 4개면 마진은 3개 총 6퍼가 나가고 그럼 94퍼의 공간이 남는다. 그걸 4개의 박스로 나누면 94 / 4를 한 것을 박스의 크기로 준다.*/
+        width: 18.4%;
+        height: 100px;
+        background: orange;
+        border: 2px solid gray;
+        box-sizing: border-box;     /*박스사이즈를 보더박스로 주어 사이즈를 맞춘다. */
+        float: left; /*수평배치*/
+        margin-right: 2%;
+
+    }
+
+    .box:last-child {
+        margin-right: 0;
+
+    }
+
+    /*하나의 공식*/
+    .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+
+</style>
+<body>
+
+
+    <div class="container clearfix">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+    
+</body>
+</html>

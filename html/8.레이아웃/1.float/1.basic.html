@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+
+    .container {
+        width: 600px;
+        /*부모의 크기를 넘어가면 아래로 가기 때문에 clear를 하지 않아도 된다.*/
+      
+    }
+
+    .box {
+        width: 150px;
+        height: 150px;
+        background: tomato;
+        border: 3px solid orange;
+        /*inline-block은 가로배치할 때 여백이 생긴다. -> 따라서 이걸로 수평배치를 하지 않는다.
+            float:left로 주고 margin으로 여백을 나눈다.
+        */
+        font-weight: 700;
+        font-size: 50px;
+        text-align: center; /*텍스트 x축 정렬*/
+        line-height: 150px; /*텍스트 y축 정렬*/
+        float: left; /*박스 수평 배치*/
+    }
+
+    /*float 해제*/
+    /*n열 해제 -> Xn+1*/
+   /* .box:nth-child(4), .box:nth-child(7) {
+        clear: left;
+        clear:both : left건 right건 해제한다.
+    } */
+
+
+</style>
+<body>
+
+    <div class="container">
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="box">3</div>
+    <div class="box">4</div>
+    <div class="box">5</div>
+    <div class="box">6</div>
+    <div class="box">7</div>
+    <div class="box">8</div>
+    <div class="box">9</div>
+    <div class="box">10</div>
+    <div class="box">11</div>
+    <div class="box">12</div>
+    <div class="box">13</div>
+    <div class="box">14</div>
+    <div class="box">15</div>
+    
+</body>
+</html>
