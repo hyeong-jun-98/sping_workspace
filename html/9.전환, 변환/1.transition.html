@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style> 
+    .box {
+        width: 100px;
+        height: 100px;
+        background: red;
+        margin: 50px;
+        /* transition: 2s; */
+        /* transition을 걸 때 hover에 걸지말고 본문에 걸 것. 되돌아 올 때도 적용하기 위해  */
+
+        /* transition-property: background ,width;
+        transition-duration: 1s, 500ms; */
+
+        /* transition-property: all;       /*위에것들을 한번에 지정*/
+        /* transition-duration: 1s; */ 
+
+        transition-timing-function: ease-in-out;
+
+
+
+    }
+
+    .box:hover {
+        width: 300px;
+        background: skyblue;
+    }
+</style>
+<body>
+    
+
+    <div class="box"></div>
+</body>
+</html>
