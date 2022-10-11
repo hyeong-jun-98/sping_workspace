@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .root {
+            width: 600px;
+            height: 500px;
+            border: 4px dashed orange;
+            padding: 100px;
+            font-size: 30px;
+            /* position:relative; */
+            /*부모에 position이 없었을 때는 화면 전체를 기준으로 움직였다면
+                부모에 position이 붙어있다면 부모를 기준으로 움직인다.*/
+        }
+        .parent {
+            width: 400px;
+            height: 300px;
+            padding: 50px;
+            border: 4px dashed blue;
+            /* position:relative; */
+        }
+
+        .child {
+            width: 120px;
+            height: 80px;
+            border: 4px dashed red;
+            background: tomato;
+            text-align: center;
+            line-height: 80px;
+            border-radius: 10px;
+        }
+
+        .abs {
+            position: absolute;
+            right: 50px;
+            bottom: 50px;
+        }
+
+        .center {
+            position:absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);   /*화면 정중앙에 위치*/
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="root">
+        <div class="parent">
+            <div class="child">1</div>
+            <div class="child abs">2</div>
+            <div class="child center">3</div>
+        </div>
+    </div>
+    
+</body>
+</html>
