@@ -1,0 +1,411 @@
+/*  구글 웹폰트 로딩  */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+/* reset */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+button, input {
+    outline: none;
+    border: none;
+    color: inherit;
+}
+
+/* common */
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+body {
+    font-size: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.en {
+    font-family: 'Exo 2', sans-serif;
+}
+br.mo {
+    display: none;
+}
+
+/* header style */
+
+header {
+    /* 뒤 사진을 비치게 하기위해 투명도를 조절 */
+    background: rgba(0, 0, 0, 0.2);
+    /* height 중앙정렬 */
+    height: 100px;
+    line-height: 100px;
+    width: 100%;
+    /* position fixed, top 0을 주면 가로가 무너지기 때문에 가로를 100% 줘야한다. */
+    position: fixed;
+    top: 0;
+}
+
+header .inner-header {
+    
+    width: 84%;
+    margin:0 auto;
+}
+/* 사진을 줄여주지 말고 사진이 들어있는 박스를 줄여준다 */
+header .inner-header .logo {
+    /* background: skyblue; */
+    float: left;
+    width: 200px;
+}
+
+header .inner-header .logo img{
+    width: 100%;
+}
+
+header .inner-header .gnb {
+    float: left;
+    margin-left: 80px;
+}
+
+header .inner-header .gnb li {
+    margin-right: 80px;
+}
+
+header .inner-header .gnb li a:hover {
+    color: #ff8342;
+}
+
+header .inner-header .gnb li a {
+    display: block;
+}
+
+header .inner-header nav li a {
+    font-size: 16px;
+    color: #fff;
+}
+
+header .inner-header nav li {
+    float: left;
+}
+
+
+
+header .inner-header .tnb {
+    
+    float: right;
+}
+
+
+header .inner-header .tnb li {
+    margin-right: 25px;
+}
+
+header .inner-header .tnb li:first-child i,
+header .inner-header .tnb li:nth-child(2) i {
+    margin-right: 8px;
+    font-size: 20px;
+}
+header .inner-header .tnb li:last-child i {
+    margin-left: 5px;
+}
+
+header .inner-header .tnb li:last-child a {
+    border: 1px solid #fff;
+    border-radius: 30px;
+    padding:5px 15px ;
+}
+
+header .inner-header .tnb li:last-child a:hover {
+    background: #fff;
+    color: #ff8342;
+}
+
+
+/* 모바일 태블릿 전용 버튼 */
+header .inner-header .gnb-mobile{
+    display: none;
+}
+section.main {
+    background: url('../img/vis_4.jpg') no-repeat center / cover fixed;
+    height: 100vh;
+}
+
+section.main .main-title {
+    
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    color: #fff;
+    text-align: center;
+
+    animation: uprise 2s;
+}
+
+@keyframes uprise {
+    from {
+        opacity: 0;
+        top: 60%;
+    }
+
+    to {
+        opacity: 1;
+        top: 50%;
+    }
+}
+
+section.main .main-title h2 {
+    font-size: 55px;
+}
+
+section.main .main-title p {
+    font-size: 25px;
+    margin: 20px 0;
+}
+section.main .main-title .view {
+    font-size: 15px;
+    border: 1px solid #fff;
+    border-radius: 40px;
+
+    width: 180px;
+    padding: auto;
+    padding: 8px 0;
+    margin: 0 auto;
+    /* 부모에 position:relative를 준다 */
+    position: relative;
+}
+
+section.main .main-title .view::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    /* 두개를 겹쳐지게 만들어서 채우는 느낌을 준다. */
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 0.3s;
+    border-radius: 40px;
+}
+/* section > .title 일괄 style */
+section .title{
+    text-align: center;
+}
+section .title h2{
+    font-size: 45px;
+    color: #111;
+    margin-bottom: 5px;
+}
+section .title p{
+    font-size: 18px;
+    color: #555;
+}
+
+/* section about style */
+section.about{
+    /* background: orange; */
+    padding: 80px 0;
+}
+section.about ul{
+    /* background: orange; */
+    width: 74%;
+    margin: 30px auto;
+    border-bottom: 1px solid #ddd;
+}
+section.about ul li{
+    box-sizing: border-box;
+    /* border: 1px solid #000; */
+    width: 33.3333%;
+    float: left;
+    height: 510px;
+}
+section.about ul li a:hover .img-box img{
+    transform: scale(1.2);
+    transition: 0.6s;
+}
+
+section.about ul li .img-box{
+    overflow: hidden;
+}
+section.about ul li .img-box img{
+    width: 100%;
+}
+section.about ul li a .text {
+    padding: 25px;
+}
+section.about ul li a .text h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+section.about ul li a .text p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+section.about ul li a .text p.more {
+    /* 일괄 대소문자변경 <-> lowercase */
+    text-transform: uppercase;
+    font-weight: 700;
+    /* background: skyblue; */
+    padding-left: 40px;
+    position: absolute;
+    bottom: 15px;
+}
+section.about ul li a .text p.more::before {
+    content: '→';
+    display: block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: #ff8342;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: -5px;
+}
+
+/* section innovation style */
+section.innovation {
+    margin-bottom: 150px;
+}
+section.innovation .img-box {
+    width: 74%;
+    height: 540px;
+    margin: 50px auto 0;
+    background: url('../img/product_1.jpg') 
+        no-repeat center / cover;
+    position: relative;
+}
+section.innovation .img-box .inner {
+    background: #3a3c4e;
+    width: 80%;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, 0);
+}
+section.innovation .img-box .inner h3 {
+    background: #fff;
+    color: #222;
+    font-size: 18px;
+    padding: 25px 45px;
+    box-sizing: border-box;
+}
+section.innovation .img-box .inner .bottom {
+    padding: 35px 85px;
+    box-sizing: border-box;
+}
+section.innovation .img-box .inner .bottom p {
+    width: 70%;
+    float: left;
+    line-height: 1.6;
+}
+section.innovation .img-box .inner .bottom a {
+    float: right;
+    background: #ff8342;
+    border-radius: 50px;
+    padding: 7px 30px;
+}
+section.innovation .img-box .inner .bottom a:hover {
+    background: #f86010;
+}
+
+section.me {
+    background: url('../img/me.jpg') no-repeat center / cover fixed;
+    height: 100vh;
+    margin-bottom: 50px;
+    
+}
+section.me li {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    position :relative
+}
+
+section.me li a {
+    font-weight: bold;
+    margin-top: 10px;
+    position: absolute;
+
+}
+
+section.me ul li ul li em {
+    float: left;
+    position: relative;
+}
+
+section.me ul li ul li p {
+    float: left;
+    right: 100;
+    position: absolute;
+    
+}
+
+section.me li a i {
+    color: #ff8342;
+}
+
+section.me li h3 {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+section.me li h3 i {
+    margin-right: 5px;
+    color: #ff8342;
+}
+
+section.me ul {
+    margin: auto;
+    width: 70%;
+}
+
+section.me ul .in {
+    margin: 0;
+}
+
+section.sns {
+    margin-bottom: 150px;
+}
+section.sns .img-box {
+    width: 74%;
+    height: 540px;
+    margin: 50px auto 0;
+   
+    position: relative;
+}
+section.sns .img-box .color {
+    background: #3a3c4e;
+    width: 80%;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, 0);
+}
+section.sns .img-box .color  {
+    background: #fff;
+    color: #222;
+    font-size: 18px;
+    padding: 25px 45px;
+    box-sizing: border-box;
+}
+section.sns .img-box .color .bottom {
+    padding: 35px 85px;
+    box-sizing: border-box;
+}
+section.sns .img-box .color .bottom p {
+    width: 70%;
+    float: left;
+    line-height: 1.6;
+}
+section.sns .img-box .color .bottom a {
+    float: right;
+    background: #ff8342;
+    border-radius: 50px;
+    padding: 7px 30px;
+}
+
+
+
