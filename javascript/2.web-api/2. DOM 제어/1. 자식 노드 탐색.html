@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul id="fruits">
+        <li class="apple">사과</li>
+        <li class="banana">바나나</li>
+        <li class="grape">포도</li>
+    </ul>
+
+    <div class="ttt">
+        <p></p>
+    </div>
+    
+
+
+    <script>
+        const $fruits = document.querySelector('#fruits');
+
+
+        const $liList = $fruits.children;
+        console.log($liList);
+
+
+        // 첫번째
+        // const $first = $fruits.children[0];
+        // const $first = $fruits.firstChild; ->  공백을 포함해서 가져옴 그래서 text가 출력된다.
+         const $first = $fruits.firstElementChild;
+
+        // 마지막
+        // const $last = $fruits
+        const $last = $fruits.lastElementChild
+
+        console.log($first);
+        console.log($last);
+
+        const $ttt = document.querySelector('.ttt');
+
+        console.log($ttt.hasChildNodes()); // -> 공백도 자식으로 포함한다.
+        console.log(!!$ttt.children.length);
+
+    </script>
+</body>
+</html>
