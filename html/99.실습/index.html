@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<!-- https://www.riotgames.com/darkroom/2000/6fffd032df4966db4b51db961b8c654a:1f127f6e678a0051d6dc8c13bfac0d91/olympic-parking-entrance-8-newlogo.jpg -->
 
 <style>
     body {
@@ -21,20 +22,25 @@
 
     .office-list .office-list_header .text-with-cta .two_small_riot {
         font-size: 20px;   
+        margin-bottom: 15%;
     }
 
    
 
     .office-list .office-list_filters .filter-bar {
-        margin-top: 10%;
+        
         background-color: rgba(0,0,0,0.8);
-        height: 80px;
+        height: 120px;
+        width: 1359px;
+        margin: 0 auto;
+        margin-left: -25%;
+        
     } 
 
     .office-list .office-list_filters .filter-bar .filter-bar_selection .three_black_bar1 {
         margin: 0 auto;
         margin-left: 10%;
-        line-height: 80px;
+        line-height: 120px;
         float: left;
         color: #696969;
     }
@@ -47,7 +53,7 @@
     .office-list .office-list_filters .filter-bar .filter-bar_selection .three_black_bar2 {
         margin: 0 auto;
         margin-right: 10%;
-        line-height: 80px;
+        line-height: 120px;
         float: right;
         color: 	#696969;
     }
@@ -59,16 +65,76 @@
 
     .office-list .office-list_result .grid {
         padding-top: 10%;
-        float: left;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 
-    .office-list .office-list_result .location-item_content {
-        border: 2px solid red;
-        position: absolute;
-        text-align: center;
-        margin-left: 50px;
+    .office-list .office-list_result .grid .grid_item {
+        width: 32%;
+        /* margin: 2%; */
+        margin-bottom: 100px;
         
     }
+    .office-list .office-list_result .grid .grid_item .location-item img {
+        width: 100%;
+    }
+
+
+    .office-list .office-list_result .location-item_content {
+        /* border: 2px solid red; */
+        /* position: absolute; */
+        text-align: center;
+        /* margin: 0 auto; */
+        width: 100%;
+    }
+
+    .office-list .office-list_result .location-item_content h3 {
+        font-size: 25px;
+    }
+
+    div.four {
+        
+    }
+
+    div.four .four_head {
+        
+        font-size: 34px;
+        text-align: left;
+        display: flex;
+        justify-content: center;
+        
+    }
+
+    div.four .four_1 h3 {
+        font-size: 25px;
+    }
+
+    div.four .four_1 p {
+        font-size: 18px;
+    }
+
+    div.four button {
+
+        margin-top: 100px;
+        color: red;
+        width: 200px;
+        height: 50px;
+        border-radius: 35px;
+        border: 1px solid black;
+        font-size: 15px;
+        background: #EAE9E1;
+    }
+
+    div.four button:hover {
+        background: black;
+        color: white;
+        transition: all 0.3s ease;
+        text-decoration: underline;
+    }
+
+    
 
     
 
@@ -117,36 +183,8 @@
                     <a class="location-item" href="http://www.naver.com">
                         <img src="https://www.riotgames.com/darkroom/260/221da31f60836b31dcdd2f3b6f60708d:0f8cb4d2e5eb060ef40bdb006524c398/adobestock-257067850.jpeg">
                     </a>
-                </div>
-            </div>
-                <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
-                <div class="location-item_content">
-                    <span class="location-item_grid-eyebrow">
-                        <div class="eyebrow eyebrow--dark">
-                            <span>Open Position: 0</span>
-                        </div>
-                    </span>
-                    <h3 class="heading heading--6 location-item_heading">
-                        <span>Barcelona, Spain</span>
-                    </h3>
-                    
-                    <div class="location-item_meta is-hidden-mobile">
-                        <div class="location-item_time">
-                            <span class="clock-icon">
-                                08 : 36
-                            </span>
-                        </div>
-                    </div>
-                </div> 
 
-                <div class="grid">
-                    <div class="grid_item">
-                        <a class="location-item" href="http://www.naver.com">
-                            <img src="https://www.riotgames.com/darkroom/260/221da31f60836b31dcdd2f3b6f60708d:0f8cb4d2e5eb060ef40bdb006524c398/adobestock-257067850.jpeg">
-                        </a>
-                    </div>
-                </div>
-                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                    <!-- <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div> -->
                     <div class="location-item_content">
                         <span class="location-item_grid-eyebrow">
                             <div class="eyebrow eyebrow--dark">
@@ -165,56 +203,417 @@
                             </div>
                         </div>
                     </div> 
+                </div>
 
-                    <div class="grid">
-                        <div class="grid_item">
-                            <a class="location-item" href="http://www.naver.com">
-                                <img src="https://www.riotgames.com/darkroom/260/221da31f60836b31dcdd2f3b6f60708d:0f8cb4d2e5eb060ef40bdb006524c398/adobestock-257067850.jpeg">
-                            </a>
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/1a23ea9a774d2f1298136794ffb150cf:9b154f1fde91134561764ab5b29af820/adobestock-164710679.jpeg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Seoul, Korea</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
                         </div>
                     </div>
-                        <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
-                        <div class="location-item_content">
-                            <span class="location-item_grid-eyebrow">
-                                <div class="eyebrow eyebrow--dark">
-                                    <span>Open Position: 0</span>
-                                </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/799ce5432afad45c4833803e522664f0:fe7b7324bc6c01fb32190719f64008c1/adobestock-125612765.jpeg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Dublin, Ireland</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
                             </span>
-                            <h3 class="heading heading--6 location-item_heading">
-                                <span>Barcelona, Spain</span>
-                            </h3>
-                            
-                            <div class="location-item_meta is-hidden-mobile">
-                                <div class="location-item_time">
-                                    <span class="clock-icon">
-                                        08 : 36
-                                    </span>
-                                </div>
-                            </div>
-                        </div> 
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/59c5d571585b3fe46864ce6a2b9023fa:3bc530c67572a0e6e5e46644fc8173f5/adobestock-91600450.jpeg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Berlin, Germany</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/aff30cb5eacf7f2fac088f5738bd6119:1b629bc274ee57853a7bb8f964991dd6/adobestock-166899186.jpeg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Hong Kong, China</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/83e259f98974059688b8a243b3521044:025176760bcbcc1d645e40ed7a1d94f6/lax-adobestock-327094922.png">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Los Angeles, USA</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/655a33235ea2f6dbc3823c1cdbb14991:29a5f6f8e2c8e7ef30f33c9d446b4612/adobestock-410648405-1.jpeg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Mexico City, Mexico</span>
+                    </h3>
+                    <!-- ================================== -->
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/5830d33025db762b18114370243aad34:2c4cc46f5bbd22cd7ab3752a606a8347/adobestock-44725292.jpeg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Moscow, Russia</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/724ad0458065ec39093152352c192e8b:33637ac0263d5c6c85dacf75f104a58a/newdelhiadobestock-131597370.png">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>New Delhi, India</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/e99b8bbd445294111edf441a697885c7:902dd4b443ca883f04ef8fca05561463/other-locations.jpg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Other Locations</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/2866c3bd779c8b803810f5133f02bd50:4034083aec44d5423036fc3be2ce2b1a/paris-adobestock-327345878.png">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Paris, France</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/5895c4bc881134fc130feed844e5d207:29b6441b0240309a9d014d835cf5f3cf/reading-adobestock-224870283.png">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Reading, UK</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/91cd35d3fb5f2b6bae2b5777c7ab425d:068253c246c62668b042218216bcc1c5/saopaulo-adobestock-276900825.png">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Sao Paulo, Brazil</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/f98b964df044cdf884d6f3a7c7701fc1:6cee28c0955491360c1679af9d844452/adobestock-292184018.jpeg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Singapore Publishing</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+                <div class="grid_item">
+                    <a class="location-item" href="http://www.naver.com">
+                        <img src="https://www.riotgames.com/darkroom/260/8b3d9a9d36483f77be7449d281ba27ec:10d646c948640622a16283fda06e5e5b/adobestock-213315790.jpeg">
+                    </a>
+
+                    <div class="location-item_bg" style="background-image: url("https://www.riotgames.com/darkroom/300/1b1774d969e9d03a8afd1875de0fb933:beb5db1b0346dcf3ceedd2bf39d7f014/adobestock-257067850.jpeg");"></div>
+                <div class="location-item_content">
+                    <span class="location-item_grid-eyebrow">
+                        <div class="eyebrow eyebrow--dark">
+                            <span>Open Position: 0</span>
+                        </div>
+                    </span>
+                    <h3 class="heading heading--6 location-item_heading">
+                        <span>Tokyo, Japan</span>
+                    </h3>
+                    
+                    <div class="location-item_meta is-hidden-mobile">
+                        <div class="location-item_time">
+                            <span class="clock-icon">
+                                08 : 36
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+
+
             </div>
+ 
+        </div>
+    </div>
+
+    <div class="four">
+        <div class="four_head">
+            <h2>Frequently Asked <br>Questions</h2>
+        </div>
+
+        <div class="four_1">
+            <h3>I don't live in any of the cities with a Riot office. 
+                Is there an opportunity to work remotely?</h3>
+
+             <p>It's highly unlikely that we'll be able to consider you for a role that isn't based out of one of the
+                 locations where we currently do business. If you're open to relocating, please make sure
+                  to indicate that in your application.​</p>   
+        </div>
+
+        <div class="four_1">
+            <h3>I want to work at one of Riot's global offices but I’m not a citizen of that country. Is that possible?</h3>
+
+             <p>Working globally depends on the immigration restrictions of the relevant country/region. If you apply to a role in a global office, those recruiting teams will respond if they see a match.</p>   
+        </div>
+
+        <div class="four_1">
+            <h3>Can I apply for multiple jobs?</h3>
+
+             <p>We want applicants to think deeply about their skills and interest—and how they line up with the jobs available at Riot. It's not a good sign if you find yourself applying to as many open positions as possible.​</p>   
+        </div>
+
+        <div class="btn">
+            <button>View All Questions</button>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
     </div>
 
 
     
 
-    <!-- <div class="location-item_content">
-        <span class="location-item_grid-eyebrow">
-            <div class="eyebrow eyebrow--dark">
-                <span>Open Position: 0</span>
-            </div>
-        </span>
-        <h3 class="heading heading--6 location-item_heading">
-            <span>Barcelona, Spain</span>
-        </h3>
-        <span class="location-item_list-eyebrow">Open Position: 0</span>
-        <div class="location-item_meta is-hidden-mobile">
-            <div class="location-item_time">
-                <span class="clock-icon">
-                    
-                </span>
-            </div>
-        </div>
-    </div> -->
+  
 </body>
 </html>
