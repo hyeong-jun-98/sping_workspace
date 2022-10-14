@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <ul id="fruits">
+        <li>사과</li>
+    </ul>
+
+    <script>
+
+        function addNewLi(text) {
+        const $newLi = document.createElement('li');
+
+        $newLi.textContent = text;
+
+        const $fruit = document.getElementById('fruits');
+        $fruit.appendChild($newLi);
+
+        }
+
+        const fArr = ['바나나', '포도', '딸기', '복숭아', '참외', '수박'];
+
+        for(let fName of fArr) {
+            addNewLi(fName);
+        }
+
+    </script>
+</body>
+</html>
